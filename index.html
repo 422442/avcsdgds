@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographic: Market Trends - Digital Inclusion for Urban Migrant Workers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F0F4F8; /* Light Grey Blue Background */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px; /* Default max-width, can be overridden by Tailwind */
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px; /* Default max-height */
+        }
+        .stat-card {
+            background-color: #FFFFFF;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: 0.875rem;
+            color: #6B7280; /* Grey-500 */
+            margin-top: 0.5rem;
+        }
+        .section-title {
+            font-size: 1.875rem; /* text-3xl */
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #003D4C; /* Deep Teal for titles */
+        }
+        .section-intro {
+            font-size: 1rem;
+            color: #4A5568; /* Grey-700 */
+            margin-bottom: 2rem;
+            max-width: 3xl;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+            padding: 1.5rem; /* p-6 */
+            margin-bottom: 1.5rem; /* mb-6 */
+        }
+        .primary-accent { color: #FFC107; } /* Bright Mango */
+        .primary-bg-accent { background-color: #FFC107; }
+        .primary-text-accent { color: #003D4C; } /* Deep Teal for text on Mango */
+
+        .dt-stage {
+            border: 2px solid #4DB6AC; /* Light Teal */
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            background-color: white;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .dt-arrow {
+            font-size: 2rem;
+            color: #00796B; /* Medium Teal */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .swot-category {
+            padding: 1rem;
+            border-radius: 0.375rem; /* rounded-md */
+            margin-bottom: 0.75rem; /* mb-3 */
+        }
+        .swot-title {
+            font-weight: 600; /* semibold */
+            font-size: 1.125rem; /* text-lg */
+            margin-bottom: 0.5rem; /* mb-2 */
+        }
+        .palette-deep-teal-bg { background-color: #003D4C; }
+        .palette-medium-teal-bg { background-color: #00796B; }
+        .palette-light-teal-bg { background-color: #4DB6AC; }
+        .palette-bright-mango-bg { background-color: #FFC107; }
+        .palette-light-mango-bg { background-color: #FFD54F; }
+
+        .palette-deep-teal-text { color: #003D4C; }
+        .palette-medium-teal-text { color: #00796B; }
+        .palette-light-teal-text { color: #4DB6AC; }
+        .palette-bright-mango-text { color: #FFC107; }
+        .palette-light-mango-text { color: #FFD54F; }
+        .text-neutral-grey { color: #757575; }
+        .text-dark-heading { color: #1A202C; } /* Very Dark Grey for headings */
+
+        .value-chain-item {
+            background-color: #E0F2F1; /* Lightest Teal */
+            border: 1px solid #4DB6AC; /* Light Teal */
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+            text-align: center;
+        }
+        .value-chain-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #00796B; /* Medium Teal */
+        }
+         .icon-placeholder {
+            font-size: 1.5rem; /* text-2xl */
+            margin-bottom: 0.5rem; /* mb-2 */
+        }
+
+    </style>
+</head>
+<body class="bg-slate-100 text-gray-800">
+    <!-- Color Palette Used: "Vibrant Tech Teal & Mango"
+         Deep Teal (Backgrounds, Dark Text): #003D4C
+         Medium Teal (Accents, Card Headers): #00796B
+         Light Teal (Chart Element 1, Highlights): #4DB6AC
+         Bright Mango (Primary Accent, CTAs, Chart Element 2): #FFC107
+         Light Mango (Chart Element 3, Secondary Highlights): #FFD54F
+         Neutral Grey (Body Text, Borders): #757575
+         White/Off-White (Card Backgrounds, Light Text): #FFFFFF / #F5F5F5
+         Page Background: #F0F4F8 (Light Grey Blue)
+    -->
+    <!-- Infographic Narrative Plan:
+        1. Hook/Introduction: Scale of digital adoption vs. exclusion of urban migrant workers.
+        2. Market Overview: Demographics and digital profile of the urban migrant worker segment.
+        3. Key Market Challenges & Trends: Pain points (access, financial, information).
+        4. Identifying Market Opportunity: Unmet needs as innovation drivers.
+        5. Research Methodology: The Design Thinking process to understand market needs.
+        6. Proposed Innovation - "SakshamSaathi": A solution tailored to market needs.
+        7. Market Viability - SWOT Analysis: For tech solutions in this segment.
+        8. Potential Market Impact: Socio-economic benefits and ecosystem innovation.
+        9. Conclusion: Reinforce tech's role in this underserved market.
+    -->
+    <!-- Visualization Choices Summary (Confirming NO SVG and NO MERMAID JS used):
+        - Section: Hook/Introduction
+            - Data: Internet Users (886M, 622M), Rural User Base (55%), "Millions" of Migrants
+            - Goal: Inform
+            - Visualization: Single Big Numbers (HTML/CSS with Tailwind).
+            - Justification: Directly conveys key scale metrics.
+            - Method: Styled HTML `<div>` elements.
+
+        - Section: Market Overview
+            - Data: Smartphone ownership vs. Digital Agency (Illustrative: 90% own, 30% effective use). Key Needs (Stable Income, Financial Management, Skill Dev).
+            - Goal: Compare, Inform
+            - Visualization 1: Donut Chart for Smartphone Ownership vs. Digital Agency (Chart.js - Canvas).
+            - Justification 1: Shows proportion clearly.
+            - Visualization 2: Bar Chart for Key Needs/Pain Points (Chart.js - Canvas, using illustrative data if needed).
+            - Justification 2: Compares prevalence of needs. Label wrapping applied.
+            - Method: Chart.js library, `<canvas>` elements.
+
+        - Section: Key Market Challenges & Trends
+            - Data: Access Barriers, Financial Exclusion, Information Gaps.
+            - Goal: Organize, Inform
+            - Visualization: Thematic Cards with Unicode icons (HTML/CSS with Tailwind).
+            - Justification: Clearly segments and describes qualitative challenges.
+            - Method: Styled HTML `<div>` elements with Unicode characters for icons.
+
+        - Section: Identifying Market Opportunity
+            - Data: "How Might We" questions.
+            - Goal: Inform
+            - Visualization: Stylized text blocks (HTML/CSS with Tailwind).
+            - Justification: Highlights key problem framings that indicate opportunity.
+            - Method: Styled HTML `<p>` or `<blockquote>` elements.
+
+        - Section: Research Methodology (Design Thinking)
+            - Data: 5 Stages of Design Thinking (Empathize, Define, Ideate, Prototype, Test).
+            - Goal: Organize, Inform
+            - Visualization: HTML/CSS based Flow Chart.
+            - Justification: Visualizes the process central to the report's findings.
+            - Method: Flexbox/Grid based HTML `<div>` elements with borders to represent flow.
+
+        - Section: Proposed Innovation - "SakshamSaathi"
+            - Data: Key App Modules (Find Work, Manage Money, Learn New Skills, Help/Support).
+            - Goal: Organize
+            - Visualization: HTML/CSS App Feature Showcase using cards and Unicode icons.
+            - Justification: Provides a clear overview of the proposed solution's components.
+            - Method: Styled HTML `<div>` cards with Unicode characters.
+
+        - Section: Market Viability - SWOT Analysis
+            - Data: Conceptual SWOT for tech solutions for migrant workers.
+            - Goal: Organize, Compare
+            - Visualization: HTML/CSS Table/Grid for SWOT.
+            - Justification: Standard and clear way to present SWOT.
+            - Method: Styled HTML `<div>` elements in a grid.
+
+        - Section: Potential Market Impact
+            - Data: Empowerment, Financial Inclusion, Improved Livelihoods. Ecosystem (NGOs, MFIs, Employers, Govt).
+            - Goal: Inform, Organize
+            - Visualization 1: Large text callouts for impacts (HTML/CSS).
+            - Visualization 2: Simple HTML/CSS "Value Chain" / "Ecosystem Map" showing SakshamSaathi connecting stakeholders.
+            - Justification 1 & 2: Highlights key outcomes and collaborative potential.
+            - Method: Styled HTML `<div>` for callouts and flexbox/grid for ecosystem map.
+    -->
+    <div class="container mx-auto p-4 md:p-8 max-w-6xl">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold palette-deep-teal-text mb-4">The Digital Frontier: India's Urban Migrant Workforce</h1>
+            <p class="text-xl text-neutral-grey">Uncovering Market Trends & Opportunities in Digital and Financial Inclusion</p>
+        </header>
+
+        <section class="mb-12">
+            <h2 class="section-title text-center">The Scale of Digital Adoption vs. Exclusion</h2>
+            <p class="section-intro text-center">
+                India has witnessed a phenomenal surge in internet adoption, yet a significant segment of its urban migrant workforce remains on the fringes of the digital revolution, facing both digital and financial exclusion. This presents a unique market challenge and a substantial opportunity for targeted tech innovation.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="stat-card palette-medium-teal-bg text-white">
+                    <div class="stat-number">886 M</div>
+                    <div class="stat-label">Active Internet Users in India (2024)</div>
+                    <p class="text-xs mt-1">(Up from 622M in 2020)</p>
+                </div>
+                <div class="stat-card palette-light-teal-bg text-white">
+                    <div class="stat-number">55%</div>
+                    <div class="stat-label">Rural Share of Internet Users</div>
+                     <p class="text-xs mt-1">(Indicating widespread initial exposure)</p>
+                </div>
+                <div class="stat-card palette-bright-mango-bg primary-text-accent">
+                    <div class="stat-number">Millions</div>
+                    <div class="stat-label">Urban Migrant Workers Seeking Livelihoods</div>
+                    <p class="text-xs mt-1">(A vast, underserved market segment)</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="section-title text-center">Market Segment: The Urban Migrant Worker</h2>
+            <p class="section-intro text-center">
+                This diverse group possesses smartphones but often lacks the 'digital agency' – the skills and confidence – to leverage technology for socio-economic advancement. Understanding their specific needs and tech profile is key to unlocking this market.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                <div class="card">
+                    <h3 class="text-xl font-semibold mb-3 palette-deep-teal-text">Smartphone Usage vs. Digital Agency</h3>
+                    <p class="text-sm text-neutral-grey mb-4">While device ownership is high, effective utilization for financial and upskilling purposes remains low, highlighting a critical gap.</p>
+                    <div class="chart-container h-64 md:h-72">
+                        <canvas id="digitalAgencyChart"></canvas>
+                    </div>
+                    <p class="text-xs text-neutral-grey mt-2 text-center">Illustrative data based on report insights.</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-semibold mb-3 palette-deep-teal-text">Key Needs & Aspirations</h3>
+                    <p class="text-sm text-neutral-grey mb-4">Core needs revolve around stable income, financial security, and skill enhancement, often unmet by current informal systems.</p>
+                    <div class="chart-container h-64 md:h-72">
+                        <canvas id="keyNeedsChart"></canvas>
+                    </div>
+                     <p class="text-xs text-neutral-grey mt-2 text-center">Illustrative representation of primary concerns.</p>
+                </div>
+            </div>
+            <div class="card mt-8">
+                <h3 class="text-xl font-semibold mb-4 palette-deep-teal-text text-center">Representative Market Personas</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="p-4 border border-gray-200 rounded-lg">
+                        <h4 class="font-semibold palette-medium-teal-text">Ravi Kumar, The Newcomer (28)</h4>
+                        <p class="text-sm text-neutral-grey"><strong class="text-gray-700">Occupation:</strong> Construction Laborer</p>
+                        <p class="text-sm text-neutral-grey"><strong class="text-gray-700">Tech Profile:</strong> Basic Smartphone, WhatsApp/YouTube (passive). Low digital literacy.</p>
+                        <p class="text-sm text-neutral-grey"><strong class="text-gray-700">Needs:</strong> Stable income, secure money transfer, skill learning.</p>
+                        <p class="text-sm text-neutral-grey"><strong class="text-gray-700">Pain Points:</strong> Irregular work, wage theft, fear of scams, language barriers.</p>
+                    </div>
+                    <div class="p-4 border border-gray-200 rounded-lg">
+                        <h4 class="font-semibold palette-medium-teal-text">Lakshmi Murugan, The Settler (35)</h4>
+                        <p class="text-sm text-neutral-grey"><strong class="text-gray-700">Occupation:</strong> Domestic Worker</p>
+                        <p class="text-sm text-neutral-grey"><strong class="text-gray-700">Tech Profile:</strong> Feature phone (primary), occasional smartphone use. Very low digital literacy.</p>
+                        <p class="text-sm text-neutral-grey"><strong class="text-gray-700">Needs:</strong> More jobs, budget management, healthcare info, savings.</p>
+                        <p class="text-sm text-neutral-grey"><strong class="text-gray-700">Pain Points:</strong> Limited job awareness, difficulty accessing schemes, no formal savings.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="section-title text-center">Key Market Challenges & Prevailing Trends</h2>
+            <p class="section-intro text-center">
+                Several interconnected challenges hinder the digital and financial inclusion of urban migrant workers, representing significant friction points in the market that new solutions can address.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="card text-center">
+                     <div class="icon-placeholder palette-bright-mango-text">🔑</div>
+                    <h3 class="text-lg font-semibold mb-2 palette-deep-teal-text">Access Barriers</h3>
+                    <p class="text-sm text-neutral-grey">Lack of awareness, language difficulties, complex UIs, and inconsistent connectivity.</p>
+                </div>
+                <div class="card text-center">
+                    <div class="icon-placeholder palette-bright-mango-text">💰</div>
+                    <h3 class="text-lg font-semibold mb-2 palette-deep-teal-text">Financial Exclusion</h3>
+                    <p class="text-sm text-neutral-grey">Cash-based economy reliance, lack of formal bank accounts, vulnerability to predatory lending, trust deficit in digital finance.</p>
+                </div>
+                <div class="card text-center">
+                    <div class="icon-placeholder palette-bright-mango-text">ℹ️</div>
+                    <h3 class="text-lg font-semibold mb-2 palette-deep-teal-text">Information Gaps</h3>
+                    <p class="text-sm text-neutral-grey">Difficulty finding reliable job info, government schemes, and emergency support. Susceptibility to misinformation.</p>
+                </div>
+                 <div class="card text-center">
+                    <div class="icon-placeholder palette-bright-mango-text">🤝</div>
+                    <h3 class="text-lg font-semibold mb-2 palette-deep-teal-text">Trust Deficit</h3>
+                    <p class="text-sm text-neutral-grey">Hesitancy towards unfamiliar digital platforms due to fear of errors, scams, or lack of perceived relevance.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="section-title text-center">Identifying Market Opportunities: Unmet Needs</h2>
+            <p class="section-intro text-center">
+                The challenges translate into clear market opportunities. "How Might We" questions, derived from deep user empathy, frame these opportunities for innovative solutions.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="card palette-light-teal-bg">
+                    <blockquote class="text-gray-700 italic">
+                        "How Might We provide Ravi (newcomer) with a simple, multilingual platform for <strong class="palette-deep-teal-text">verified job alerts</strong> and a <strong class="palette-deep-teal-text">secure, easy-to-use digital wallet</strong> he can trust?"
+                    </blockquote>
+                </div>
+                <div class="card palette-light-mango-bg">
+                    <blockquote class="text-gray-700 italic">
+                        "How Might We create a <strong class="palette-deep-teal-text">voice-assisted, vernacular service</strong> to help Lakshmi (settler) find suitable work and guide her through simple <strong class="palette-deep-teal-text">budgeting and saving</strong>?"
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="section-title text-center">Market Research Methodology: Design Thinking</h2>
+            <p class="section-intro text-center">
+                To deeply understand this market and its unmet needs, a human-centric Design Thinking approach was employed. This iterative process ensures solutions are desirable, feasible, and viable.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-x-2 gap-y-4 items-stretch">
+                <div class="dt-stage"><h3 class="font-semibold palette-medium-teal-text text-lg">1. Empathize</h3><p class="text-sm text-neutral-grey mt-1">Understand user needs, context, pain points.</p></div>
+                <div class="dt-arrow hidden md:flex">&rarr;</div>
+                <div class="dt-stage"><h3 class="font-semibold palette-medium-teal-text text-lg">2. Define</h3><p class="text-sm text-neutral-grey mt-1">Articulate core problems & user personas.</p></div>
+                <div class="dt-arrow hidden md:flex">&rarr;</div>
+                <div class="dt-stage"><h3 class="font-semibold palette-medium-teal-text text-lg">3. Ideate</h3><p class="text-sm text-neutral-grey mt-1">Brainstorm a wide range of solutions.</p></div>
+            </div>
+             <div class="flex justify-center my-2 md:hidden"><span class="text-2xl palette-medium-teal-text">&darr;</span></div>
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-x-2 gap-y-4 items-stretch md:mt-4">
+                <div class="md:col-start-2 dt-stage"><h3 class="font-semibold palette-medium-teal-text text-lg">4. Prototype</h3><p class="text-sm text-neutral-grey mt-1">Build tangible representations of ideas.</p></div>
+                <div class="dt-arrow hidden md:flex">&rarr;</div>
+                <div class="dt-stage"><h3 class="font-semibold palette-medium-teal-text text-lg">5. Test</h3><p class="text-sm text-neutral-grey mt-1">Gather user feedback & iterate.</p></div>
+            </div>
+             <p class="text-center text-sm text-neutral-grey mt-4">This iterative cycle ensures solutions are deeply aligned with market needs.</p>
+        </section>
+
+
+        <section class="mb-12">
+            <h2 class="section-title text-center">Proposed Market Innovation: "SakshamSaathi" App</h2>
+            <p class="section-intro text-center">
+                "SakshamSaathi" (Capable Companion) is a conceptual mobile app designed to address the identified market needs, offering a holistic suite of services focused on empowerment and inclusion.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="card text-center">
+                    <div class="icon-placeholder palette-medium-teal-text">📖</div>
+                    <h3 class="text-lg font-semibold mb-1">नया सीखें (Learn Skills)</h3>
+                    <p class="text-xs text-neutral-grey">Digital/financial literacy, rights awareness. Short, visual, vernacular, offline content.</p>
+                </div>
+                <div class="card text-center">
+                     <div class="icon-placeholder palette-medium-teal-text">💼</div>
+                    <h3 class="text-lg font-semibold mb-1">काम खोजें (Find Work)</h3>
+                    <p class="text-xs text-neutral-grey">Verified job listings, skill filters, direct employer contact, job alerts.</p>
+                </div>
+                <div class="card text-center">
+                     <div class="icon-placeholder palette-medium-teal-text">💳</div>
+                    <h3 class="text-lg font-semibold mb-1">पैसा मैनेज करें (Manage Money)</h3>
+                    <p class="text-xs text-neutral-grey">Simplified UPI wallet, voice-input expense tracker, remittance info.</p>
+                </div>
+                <div class="card text-center">
+                    <div class="icon-placeholder palette-medium-teal-text">🆘</div>
+                    <h3 class="text-lg font-semibold mb-1">मदद/सहायता (Help/Support)</h3>
+                    <p class="text-xs text-neutral-grey">Vernacular FAQ, NGO directory, SOS button, human callback option.</p>
+                </div>
+            </div>
+            <p class="text-center text-neutral-grey mt-6 text-sm">Key app principles: Simplicity, Multilingual, Voice-Assisted, Offline Access, Trust-Building, Progressive Disclosure.</p>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="section-title text-center">Market Viability: SWOT Analysis</h2>
+            <p class="section-intro text-center">
+                A SWOT analysis for technology-driven solutions targeting the urban migrant worker market reveals the following:
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <div class="swot-category bg-green-100 border-l-4 border-green-500">
+                        <h3 class="swot-title text-green-700">Strengths 💪</h3>
+                        <ul class="list-disc list-inside text-sm text-green-600">
+                            <li>Addresses clearly defined, acute user needs.</li>
+                            <li>Large, concentrated target user base.</li>
+                            <li>High smartphone penetration provides an existing platform.</li>
+                            <li>Potential for significant positive social impact.</li>
+                        </ul>
+                    </div>
+                     <div class="swot-category bg-red-100 border-l-4 border-red-500 mt-6">
+                        <h3 class="swot-title text-red-700">Weaknesses 📉</h3>
+                        <ul class="list-disc list-inside text-sm text-red-600">
+                            <li>Low digital and financial literacy levels.</li>
+                            <li>Deep-seated trust issues with formal/digital systems.</li>
+                            <li>Connectivity and affordability challenges.</li>
+                            <li>Linguistic and cultural diversity requiring extensive localization.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <div class="swot-category bg-blue-100 border-l-4 border-blue-500">
+                        <h3 class="swot-title text-blue-700">Opportunities 🚀</h3>
+                        <ul class="list-disc list-inside text-sm text-blue-600">
+                            <li>Massive underserved market segment.</li>
+                            <li>Potential for partnerships (NGOs, MFIs, Govt., Employers).</li>
+                            <li>Alignment with national Digital India goals.</li>
+                            <li>Data insights for future service development.</li>
+                        </ul>
+                    </div>
+                    <div class="swot-category bg-yellow-100 border-l-4 border-yellow-500 mt-6">
+                        <h3 class="swot-title text-yellow-700">Threats ⚠️</h3>
+                        <ul class="list-disc list-inside text-sm text-yellow-600">
+                            <li>Risk of misinformation and digital scams targeting users.</li>
+                            <li>Rapid technological changes requiring continuous adaptation.</li>
+                            <li>Potential for exclusion if design isn't perfectly inclusive.</li>
+                            <li>Competition from informal or less tailored solutions.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="section-title text-center">Potential Market Impact & Ecosystem Synergy</h2>
+            <p class="section-intro text-center">
+                Solutions like "SakshamSaathi" can create substantial socio-economic value and foster a collaborative ecosystem for sustainable impact.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card">
+                    <h3 class="text-xl font-semibold mb-3 palette-deep-teal-text">Key Socio-Economic Impacts</h3>
+                    <ul class="list-none space-y-3">
+                        <li class="flex items-start"><span class="primary-accent mr-2 text-xl">📈</span> <span class="text-neutral-grey"><strong>Empowerment:</strong> Enhanced decision-making, rights awareness.</span></li>
+                        <li class="flex items-start"><span class="primary-accent mr-2 text-xl">🏦</span> <span class="text-neutral-grey"><strong>Financial Inclusion:</strong> Access to formal financial tools, improved resilience.</span></li>
+                        <li class="flex items-start"><span class="primary-accent mr-2 text-xl">🛠️</span> <span class="text-neutral-grey"><strong>Improved Livelihoods:</strong> Better job access, fair wages, skill development.</span></li>
+                        <li class="flex items-start"><span class="primary-accent mr-2 text-xl">📱</span> <span class="text-neutral-grey"><strong>Reduced Digital Divide:</strong> Benefits of digital transformation extended.</span></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-semibold mb-3 palette-deep-teal-text">Fostering an Innovation Ecosystem</h3>
+                    <p class="text-sm text-neutral-grey mb-4">Success depends on a value network connecting key stakeholders around the migrant worker.</p>
+                    <div class="space-y-2">
+                        <div class="value-chain-item">NGOs (Outreach, Trust)</div>
+                        <div class="value-chain-arrow">↕️</div>
+                        <div class="value-chain-item palette-bright-mango-bg primary-text-accent font-semibold">SakshamSaathi (Platform)</div>
+                        <div class="value-chain-arrow">↕️</div>
+                        <div class="grid grid-cols-2 gap-2">
+                           <div class="value-chain-item">MFIs (Financial Products)</div>
+                           <div class="value-chain-item">Employers (Jobs, Skills)</div>
+                           <div class="value-chain-item">Govt. Agencies (Schemes)</div>
+                           <div class="value-chain-item">Workers (Users & Beneficiaries)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="text-center py-10 palette-deep-teal-bg text-white rounded-lg">
+            <h2 class="text-3xl font-bold mb-4">The Path Forward: Tech for Inclusive Growth</h2>
+            <p class="text-lg max-w-2xl mx-auto leading-relaxed">
+                The urban migrant worker market presents a significant opportunity for technology to drive meaningful social and economic change. Human-centered design, coupled with strategic ecosystem partnerships, can unlock this potential, creating solutions that empower individuals and contribute to a more inclusive Digital India.
+            </p>
+        </section>
+
+    </div>
+
+    <footer class="text-center py-6 mt-8">
+        <p class="text-sm text-neutral-grey">&copy; 2025 Market Research Insights. Infographic based on the "Design Thinking: Tech Innovation Assignment" report.</p>
+    </footer>
+
+    <script>
+        function wrapLabels(label, maxLength = 16) {
+            if (typeof label !== 'string') {
+                return label; // Return as is if not a string (e.g., already an array)
+            }
+            if (label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxLength && currentLine.length > 0) {
+                    lines.push(currentLine.trim());
+                    currentLine = word + ' ';
+                } else {
+                    currentLine += word + ' ';
+                }
+            }
+            if (currentLine.trim().length > 0) {
+                lines.push(currentLine.trim());
+            }
+            return lines.length > 0 ? lines : [label]; // Ensure at least the original label is returned if splitting fails
+        }
+
+        const commonTooltipTitleCallback = function(tooltipItems) {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#4A5568', // Grey-700 for legend text
+                         font: {
+                            family: 'Inter',
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: commonTooltipTitleCallback
+                    },
+                    bodyFont: {
+                        family: 'Inter',
+                    },
+                    titleFont: {
+                        family: 'Inter',
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#757575', // Neutral Grey for ticks
+                        font: {
+                            family: 'Inter',
+                        },
+                         callback: function(value, index, values) {
+                            const label = this.getLabelForValue(value);
+                            return wrapLabels(label, 10); // Shorter wrap for axis labels
+                        }
+                    },
+                    grid: {
+                        display: false
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: '#757575', // Neutral Grey for ticks
+                        font: {
+                            family: 'Inter',
+                        }
+                    },
+                    grid: {
+                        color: '#E2E8F0' // Grey-200 for grid lines
+                    },
+                    beginAtZero: true
+                }
+            }
+        };
+        
+        const commonPieDonutOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: '#4A5568',
+                         font: {
+                            family: 'Inter',
+                        }
+                    }
+                },
+                tooltip: {
+                     callbacks: {
+                        label: function(context) {
+                            let label = context.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            if (context.parsed !== null) {
+                                label += context.parsed + '%';
+                            }
+                            return label;
+                        },
+                         title: commonTooltipTitleCallback
+                    },
+                    bodyFont: {
+                        family: 'Inter',
+                    },
+                    titleFont: {
+                        family: 'Inter',
+                    }
+                }
+            }
+        };
+
+
+        // Chart 1: Digital Agency Chart (Donut)
+        const digitalAgencyCtx = document.getElementById('digitalAgencyChart').getContext('2d');
+        new Chart(digitalAgencyCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Owns Smartphone', 'Lacks Effective Digital Agency', 'Uses Advanced Digital Services'],
+                datasets: [{
+                    label: 'Digital Profile',
+                    data: [65, 25, 10], // Illustrative: 90% own, but 65% basic use, 25% ineffective, 10% advanced
+                    backgroundColor: ['#4DB6AC', '#FFD54F', '#00796B'],
+                    borderColor: ['#FFFFFF'],
+                    borderWidth: 2
+                }]
+            },
+            options: commonPieDonutOptions
+        });
+
+        // Chart 2: Key Needs Chart (Bar)
+        const keyNeedsCtx = document.getElementById('keyNeedsChart').getContext('2d');
+        const rawLabelsKeyNeeds = ['Stable & Fair Income', 'Secure Financial Management', 'Relevant Skill Development', 'Access to Health Information', 'Support for Govt Schemes'];
+        new Chart(keyNeedsCtx, {
+            type: 'bar',
+            data: {
+                labels: rawLabelsKeyNeeds.map(label => wrapLabels(label)),
+                datasets: [{
+                    label: 'Importance of Needs (Illustrative)',
+                    data: [90, 85, 75, 70, 60], // Illustrative importance scores
+                    backgroundColor: '#4DB6AC', // Light Teal
+                    borderColor: '#00796B', // Medium Teal
+                    borderWidth: 1
+                }]
+            },
+            options: commonChartOptions
+        });
+
+    </script>
+</body>
+</html>
